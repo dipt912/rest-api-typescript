@@ -1,0 +1,112 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "schemes": ["http"],
+    "produces": ["application/json"],
+    "paths": {
+      "/login": {
+        "post": {
+          "tags": ["login user"],
+          "summary": "Login by email and password",
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          },
+          "content": {
+            "application/json": {}
+          },
+          "parameters": [
+            {
+              "name": "email",
+              "in": "body",
+              "description": "user email",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "body",
+              "description": "user password",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "/register": {
+        "post": {
+          "tags": ["Regitster application"],
+          "summary": "Register by user email, password and email",
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          },
+          "content": {
+            "application/json": {}
+          },
+          "parameters": [
+            {
+              "name": "email",
+              "in": "body",
+              "description": "user email",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "body",
+              "description": "user password",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "in": "body",
+              "description": "user name",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "/search": {
+        "get": {
+          "tags": ["Search Text"],
+          "summary": "Search by places using opencagedata service",
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          },
+          "content": {
+            "application/json": {}
+          },
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "description": "Specifies the query string",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  }
+  

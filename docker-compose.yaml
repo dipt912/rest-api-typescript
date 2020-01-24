@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  rest-api-typescript:
+    container_name: rest-api-typescrip-backend
+    build: ./
+    command: npm start
+    working_dir: /usr/src/rest-api-typescript
+    environment:
+      POSTGRES_URI: postgres://admin:password@postgres:5432/rest-api-typescript
+      REDIS_URI: redis://redis:6379
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "rest-api-typescript"
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: 5432
+    links:
+      - postgres
+      - redis
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./:/usr/src/rest-api-typescript
+  
+  postgres:
+    container_name: rest-api-postgres
+    build: ./postgres
+    environment:
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_URL: postgres://admin:password@localhost:5432/rest-api-typescript
+      POSTGRES_DB: "rest-api-typescript"
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: 5432
+    ports:
+      - "5434:5432"
+
+  redis:
+    image: redis
+    ports:
+      - "6380:6379"    
+    
